@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>relaycars webplayer</title>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="aframe-custom-cubemap-component.js"></script>
+    <script src="aframe-spin-frames-component.js"></script>
+    <style>
+      #a-scene {
+        position: relative;
+      }
+      .toggle-wrapper {
+        position: absolute;
+        float: left;
+        z-index: 1;
+        padding-left: 2%;
+        padding-top: 2%;
+      }
+      .toggle-wrapper button {
+        font-size: 1.2rem;
+        border: 0;
+        color: #fefefe;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0.8;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Toggle scenes -->
+    <div class="toggle-wrapper">
+      <button class="toggle-interior" data-scene="interior">
+        Interior
+      </button>
+      <button class="toggle-exterior" data-scene="exterior">
+        Exterior
+      </button>
+    </div>
+
+    <!-- Main Aframe scene -->
+    <a-scene id="a-scene" rotation="0 0 0" vr-mode-ui="enabled:true">
+      <a-camera
+        id="camera"
+        position="0 1.6 0"
+        fov="70"
+        look-controls="enabled:false"
+        wasd-controls="enabled:false"
+      >
+      </a-camera>
+      <!-- Interior scene -->
+      <a-entity class="interior" visible="false">
+        <a-entity
+          custom-cubemap="folder:./AIL13225_pavr/AIL13225_pavr;transparent:true;vifnum:13225;stereo:left;eye:_L_"
+        ></a-entity>
+        <a-entity
+          custom-cubemap="folder:./AIL13225_pavr/AIL13225_pavr;transparent:true;vifnum:13225;stereo:right;eye:_R_"
+        ></a-entity>
+        <a-entity
+          custom-cubemap="folder:showroom_int;background:true;"
+        ></a-entity>
+      </a-entity>
+
+      <!-- Exterior scene -->
+      <a-entity class="exterior" visible="true">
+        <a-image
+          class="clickable"
+          position="0 1.6 -0.4"
+          scale="1 1 1"
+          height="0.5"
+          width="1"
+          spin-frames="folder:AIL13225_1024;clickToSpin:false;vifnum:13225;stereo:both;eye:left"
+        >
+        </a-image>
+        <a-image
+          class="clickable"
+          position="0 1.6 -0.4"
+          scale="1 1 1"
+          height="0.5"
+          width="1"
+          spin-frames="folder:AIL13225_1024;clickToSpin:false;vifnum:13225;stereo:right;eye:right"
+        >
+        </a-image>
+        <a-entity
+          custom-cubemap="folder:showroom_ext;background:true;visible:true"
+        ></a-entity>
+      </a-entity>
+    </a-scene>
+    <script src="index.js"></script>
+  </body>
+</html>
