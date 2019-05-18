@@ -13,6 +13,16 @@
     return setScene(selectedScene);
   }
 
+  function faceCameraToCoords(camera, coords) {
+    camera.setAttribute('look-controls', { enabled: true });
+    camera.setAttribute('rotation', coords);
+    var newX = camera.object3D.rotation.x;
+    var newY = camera.object3D.rotation.y;
+    camera.components['look-controls'].pitchObject.rotation.x = newX;
+    camera.components['look-controls'].yawObject.rotation.y = newY;
+    camera.setAttribute('look-controls', { enabled: false });
+  }
+
   function setScene(scene) {
     var aScene = document.getElementById('a-scene');
     var camera = document.getElementById('camera');
@@ -24,14 +34,19 @@
         exteriorScene.setAttribute('visible', false);
         interiorScene.setAttribute('visible', true);
         aScene.setAttribute('rotation', '0 180 0');
+        faceCameraToCoords(camera, '0 0 0');
         camera.setAttribute('look-controls', { enabled: true });
         break;
       case 'exterior':
         exteriorScene.setAttribute('visible', true);
         interiorScene.setAttribute('visible', false);
         aScene.setAttribute('rotation', '0 0 0');
-        camera.setAttribute('look-controls', { enabled: false });
-        camera.object3D.rotation.set(0, 0, 0);
+        faceCameraToCoords(camera, '0 0 0');
+        camera.setAttribute('look-controls', { enabled: true });
+        setTimeout(function() {
+          // camera.object3D.rotation('rotation', '0 0 0');
+          camera.setAttribute('look-controls', { enabled: false });
+        }, 100);
         break;
     }
   }
