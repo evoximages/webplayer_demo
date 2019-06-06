@@ -43,12 +43,13 @@
         id="camera"
         position="0 1.6 0"
         fov="80"
-        look-controls="enabled:true"
+        look-controls="enabled:false"
         wasd-controls="enabled:false"
       >
       </a-camera>
+
       <!-- Interior scene -->
-      <a-entity class="interior" visible="true">
+      <a-entity class="interior" visible="false">
         <a-entity
           custom-cubemap="folder:./AIL13225_pavr/AIL13225_pavr;transparent:true;vifnum:13225;stereo:left;eye:_L_"
         ></a-entity>
@@ -61,7 +62,7 @@
       </a-entity>
 
       <!-- Exterior scene -->
-      <a-entity class="exterior" visible="false">
+      <a-entity class="exterior" visible="true">
         <a-image
           class="clickable"
           position="0 1.6 -0.4"

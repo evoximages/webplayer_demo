@@ -5,6 +5,7 @@
     var toggleExterior = document.querySelector('.toggle-exterior');
     toggleExterior.addEventListener('click', handleClick);
     toggleInterior.addEventListener('click', handleClick);
+    setScene('exterior');
   }
 
   function handleClick(e) {
