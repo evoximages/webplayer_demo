@@ -42,8 +42,8 @@
       <a-camera
         id="camera"
         position="0 1.6 0"
-        fov="80"
-        look-controls="enabled:false"
+        fov="70"
+        look-controls="enabled:true"
         wasd-controls="enabled:false"
       >
       </a-camera>
@@ -51,10 +51,10 @@
       <!-- Interior scene -->
       <a-entity class="interior" visible="false">
         <a-entity
-          custom-cubemap="folder:./AIL13225_pavr/AIL13225_pavr;transparent:true;vifnum:13225;stereo:left;eye:_L_"
+          custom-cubemap="folder:./AIL12774_pavr/AIL12774_pavr;transparent:true;vifnum:13225;stereo:left;eye:_L_"
         ></a-entity>
         <a-entity
-          custom-cubemap="folder:./AIL13225_pavr/AIL13225_pavr;transparent:true;vifnum:13225;stereo:right;eye:_R_"
+          custom-cubemap="folder:./AIL12774_pavr/AIL12774_pavr;transparent:true;vifnum:13225;stereo:right;eye:_R_"
         ></a-entity>
         <a-entity
           custom-cubemap="folder:showroom_int;background:true;"
@@ -65,22 +65,20 @@
       <a-entity class="exterior" visible="true">
         <a-image
           class="clickable"
-          position="0 1.6 -0.4"
-          scale="1 1 1"
-          height="0.5"
-          width="1"
-          spin-frames="folder:AIL12245_2048;clickToSpin:false;vifnum:12245;stereo:both;eye:left;"
+          position="0 1.6 -1.6"
+          scale="4 4 4"
+          spin-frames="folder:AIL12774;clickToSpin:true;vifnum:12774;stereo:both;eye:left;"
         >
         </a-image>
-        <a-image
+        <!-- <a-image
           class="clickable"
           position="0 1.6 -0.4"
           scale="1 1 1"
           height="0.5"
           width="1"
-          spin-frames="folder:AIL12245_2048;clickToSpin:false;vifnum:12245;stereo:right;eye:right"
+          spin-frames="folder:12221;clickToSpin:true;vifnum:13225;stereo:right;eye:right"
         >
-        </a-image>
+        </a-image> -->
         <a-entity
           custom-cubemap="folder:showroom_ext;background:true;"
         ></a-entity>

@@ -194,10 +194,6 @@ AFRAME.registerComponent('spin-frames', {
   onMouseDown: function(event) {
     this.mouseDown = true;
     this.previousMouseEvent = event;
-    if (!this.data.clickToSpin) return;
-    this.data.initTick
-      ? (this.data.initTick = false)
-      : (this.data.initTick = true);
   },
 
   onMouseUp: function() {
@@ -227,10 +223,6 @@ AFRAME.registerComponent('spin-frames', {
   onTouchStart: function(event) {
     this.touchDown = true;
     this.previousTouchEvent = event;
-    if (!this.data.clickToSpin) return;
-    this.data.initTick
-      ? (this.data.initTick = false)
-      : (this.data.initTick = true);
   },
 
   onTouchEnd: function() {

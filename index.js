@@ -1,4 +1,5 @@
 'use strict';
+
 (function() {
   function init() {
     var toggleInterior = document.querySelector('.toggle-interior');
@@ -44,10 +45,6 @@
         aScene.setAttribute('rotation', '0 0 0');
         faceCameraToCoords(camera, '0 0 0');
         camera.setAttribute('look-controls', { enabled: true });
-        setTimeout(function() {
-          // camera.object3D.rotation('rotation', '0 0 0');
-          camera.setAttribute('look-controls', { enabled: false });
-        }, 100);
         break;
     }
   }
