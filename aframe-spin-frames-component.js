@@ -43,7 +43,8 @@ AFRAME.registerComponent('spin-frames', {
 
   update: function() {
     this.el.setAttribute('visible', this.data.visible);
-    this.loadImages();
+    this.loadImage();
+    this.loadTextures();
     this.updateMeshTexture(this.data.frameIndex);
     this.setStereoLayer();
   },
@@ -111,7 +112,22 @@ AFRAME.registerComponent('spin-frames', {
     }
   },
 
-  loadImages: function() {
+  loadImage: function() {
+    const loader = new THREE.ImageLoader();
+    const vif = this.data.vifnum;
+    // Get dimension of first frame to detect ratio needed
+    const path = `/AIL${vif}/AIL${vif}_${this.data.eye}_010.png`;
+
+    loader.load(path, image => {
+      const ratio = image.height / image.width;
+      this.el.setAttribute('height', ratio);
+
+      // If old spec, move vehicle slightly higher on y-axis
+      if (ratio !== 1) this.el.setAttribute('position', '0 1.8 -1.6');
+    });
+  },
+
+  loadTextures: function() {
     const loader = new THREE.TextureLoader();
     loader.setPath(this.data.folder);
 
