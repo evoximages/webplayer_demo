@@ -243,6 +243,9 @@ AFRAME.registerComponent('spin-frames', {
 
   onTouchEnd: function() {
     this.touchDown = false;
+    this.data.initTick
+      ? (this.data.initTick = false)
+      : (this.data.initTick = true);
   },
 
   onEnterVr: function() {
