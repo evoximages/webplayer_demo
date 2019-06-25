@@ -36,7 +36,7 @@ AFRAME.registerComponent('spin-frames', {
     this.bindMethods();
 
     if (!this._isMobile) {
-      // this.el.sceneEl.setAttribute('vr-mode-ui', { enabled: false });
+      this.el.sceneEl.setAttribute('vr-mode-ui', { enabled: false });
     }
   },
 
