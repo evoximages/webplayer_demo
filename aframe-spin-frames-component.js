@@ -46,8 +46,6 @@ AFRAME.registerComponent('spin-frames', {
     this.loadTextures();
     this.updateMeshTexture(this.data.frameIndex);
     this.setStereoLayer();
-    console.log(this.el.sceneEl.camera);
-    console.log(this.el.getAttribute('position'));
   },
 
   play: function() {

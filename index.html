@@ -10,6 +10,11 @@
     <script src="aframe-custom-cubemap-component.js"></script>
     <script src="aframe-spin-frames-component.js"></script>
     <style>
+      body {
+        font-family: inherit;
+        font-size: 14px;
+        color: #fefefe;
+      }
       .toggle-wrapper {
         position: absolute;
         float: left;
@@ -18,12 +23,23 @@
         padding-top: 2%;
       }
       .toggle-wrapper button {
+        font-family: inherit;
         font-size: 1.2rem;
-        border: 0;
         color: #fefefe;
+        border: 0;
         background: rgba(0, 0, 0, 0.35);
         opacity: 0.8;
         cursor: pointer;
+      }
+      .swipe-overlay span {
+        position: absolute;
+        left: 50%;
+        bottom: 10%;
+        padding: 0.8rem;
+        transform: translate(-50%, 50%);
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0.8;
+        z-index: 1;
       }
     </style>
   </head>
@@ -36,6 +52,10 @@
       <button class="toggle-exterior" data-scene="exterior">
         Exterior
       </button>
+    </div>
+
+    <div class="swipe-overlay">
+      <span style="font-size: 2em">Swipe to spin</span>
     </div>
 
     <!-- Main Aframe scene -->

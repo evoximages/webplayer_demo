@@ -7,6 +7,10 @@
     toggleExterior.addEventListener('click', handleClick);
     toggleInterior.addEventListener('click', handleClick);
     setScene('exterior');
+    var overlay = document.querySelector('.swipe-overlay');
+    setTimeout(function() {
+      overlay.style.display = 'none';
+    }, 5000);
   }
 
   function handleClick(e) {
