@@ -21,6 +21,7 @@ AFRAME.registerComponent('custom-cubemap', {
   },
 
   init: function() {
+    this._isMobile = this.el.sceneEl.isMobile;
     this.onEnterVr = this.onEnterVr.bind(this);
     this.onExitVr = this.onExitVr.bind(this);
     this.setStereoLayer = this.setStereoLayer.bind(this);
@@ -41,11 +42,10 @@ AFRAME.registerComponent('custom-cubemap', {
       });
     }
 
-    if (!this.isMobile()) {
-      var scene = document.getElementsByTagName('a-scene');
-      if (!scene[0]) return;
-      scene[0].setAttribute('vr-mode-ui', { enabled: false });
+    if (!this._isMobile) {
+      // this.el.sceneEl.setAttribute('vr-mode-ui', { enabled: false });
     }
+
     this.setStereoLayer();
   },
 
@@ -81,21 +81,6 @@ AFRAME.registerComponent('custom-cubemap', {
       canvasEl.removeEventListener('enter-vr', this.onEnterVr);
       canvasEl.removeEventListener('exit-vr', this.onExitVr);
     }
-  },
-
-  isMobile: function() {
-    if (
-      navigator.userAgent.match(/Android/i) ||
-      navigator.userAgent.match(/webOS/i) ||
-      navigator.userAgent.match(/iPhone/i) ||
-      navigator.userAgent.match(/iPad/i) ||
-      navigator.userAgent.match(/iPod/i) ||
-      navigator.userAgent.match(/BlackBerry/i) ||
-      navigator.userAgent.match(/Windows Phone/i)
-    ) {
-      return true;
-    }
-    return false;
   },
 
   setStereoLayer: function(mode) {

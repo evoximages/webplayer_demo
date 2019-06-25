@@ -36,8 +36,7 @@ AFRAME.registerComponent('spin-frames', {
     this.bindMethods();
 
     if (!this._isMobile) {
-      var scene = document.getElementById('a-scene');
-      scene.setAttribute('vr-mode-ui', { enabled: false });
+      // this.el.sceneEl.setAttribute('vr-mode-ui', { enabled: false });
     }
   },
 
@@ -47,6 +46,8 @@ AFRAME.registerComponent('spin-frames', {
     this.loadTextures();
     this.updateMeshTexture(this.data.frameIndex);
     this.setStereoLayer();
+    console.log(this.el.sceneEl.camera);
+    console.log(this.el.getAttribute('position'));
   },
 
   play: function() {
@@ -248,6 +249,8 @@ AFRAME.registerComponent('spin-frames', {
   onEnterVr: function() {
     this.setStereoLayer('inVrMode');
     this.data.clickToSpin = true;
+    this.el.setAttribute('position', '0 3.4 2');
+    this.el.sceneEl.setAttribute('rotation', '0 180 0');
   },
 
   onExitVr: function() {
