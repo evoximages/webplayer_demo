@@ -4,13 +4,28 @@
   function init() {
     var toggleInterior = document.querySelector('.toggle-interior');
     var toggleExterior = document.querySelector('.toggle-exterior');
+    var overlay = document.querySelector('.swipe-overlay');
+    var mql = window.matchMedia('(orientation: portrait)');
+
+    mql.addListener(detectOrientation);
     toggleExterior.addEventListener('click', handleClick);
     toggleInterior.addEventListener('click', handleClick);
+
+    detectOrientation(mql);
     setScene('exterior');
-    var overlay = document.querySelector('.swipe-overlay');
+
     setTimeout(function() {
       overlay.style.display = 'none';
     }, 5000);
+  }
+
+  function detectOrientation(m) {
+    var extCam = document.getElementById('camera-exterior');
+    if (m.matches) {
+      extCam.setAttribute('camera', 'fov', '110');
+    } else {
+      extCam.setAttribute('camera', 'fov', '70');
+    }
   }
 
   function handleClick(e) {
