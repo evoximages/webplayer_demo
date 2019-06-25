@@ -243,16 +243,11 @@ AFRAME.registerComponent('spin-frames', {
 
   onTouchEnd: function() {
     this.touchDown = false;
-    this.data.initTick
-      ? (this.data.initTick = false)
-      : (this.data.initTick = true);
   },
 
   onEnterVr: function() {
     this.setStereoLayer('inVrMode');
     this.data.clickToSpin = true;
-    this.el.sceneEl.addEventListener('mouseenter', this.onMouseDown, false);
-    this.el.sceneEl.addEventListener('mouseleave', this.onMouseDown, false);
   },
 
   onExitVr: function() {

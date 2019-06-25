@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>relaycars webplayer</title>
     <script src="aframe.js"></script>
+    <!-- <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script> -->
     <script src="aframe-custom-cubemap-component.js"></script>
     <script src="aframe-spin-frames-component.js"></script>
     <style>
@@ -38,15 +39,26 @@
     </div>
 
     <!-- Main Aframe scene -->
-    <a-scene id="a-scene" rotation="0 180 0" vr-mode-ui="enabled:true">
-      <a-camera
+    <a-scene id="a-scene" rotation="0 0 0" vr-mode-ui="enabled:true">
+      <!-- <a-entity
         id="camera"
-        position="0 1.6 0"
-        fov="70"
-        look-controls="enabled:true"
+        fov="90"
+        position="0 0 0"
+        look-controls="enabled:false"
         wasd-controls="enabled:false"
-      >
-      </a-camera>
+      > -->
+      <a-entity id="rig" position="0 1.6 0">
+        <a-entity
+          id="camera-exterior"
+          camera="fov:90"
+          look-controls="enabled: false"
+        ></a-entity>
+        <a-entity
+          id="camera-interior"
+          camera
+          look-controls="enabled: true"
+        ></a-entity>
+      </a-entity>
 
       <!-- Interior scene -->
       <a-entity class="interior" visible="false">
@@ -65,9 +77,8 @@
       <a-entity class="exterior" visible="true">
         <a-image
           class="clickable"
-          position="0 1.6 -1.6"
           scale="4 4 4"
-          spin-frames="folder:AIL12684;clickToSpin:true;vifnum:12684;stereo:both;eye:left;"
+          spin-frames="folder:AIL12684;clickToSpin:false;vifnum:12684;stereo:both;eye:left;"
         >
         </a-image>
         <!-- <a-image
