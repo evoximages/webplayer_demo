@@ -113,16 +113,18 @@ AFRAME.registerComponent('spin-frames', {
 
   loadImage: function() {
     const loader = new THREE.ImageLoader();
-    const vif = this.data.vifnum;
+    const { folder, vifnum, eye } = this.data;
+
     // Get dimension of first frame to detect ratio needed
-    const path = `/AIL${vif}/AIL${vif}_${this.data.eye}_010.png`;
+    const path = `${folder}/AIL${vifnum}_${eye}_010.png`;
 
     loader.load(path, image => {
       const ratio = image.height / image.width;
       this.el.setAttribute('height', ratio);
-
+      console.log(this.el);
       // If old spec, move vehicle slightly higher on y-axis
-      if (ratio !== 1) this.el.setAttribute('position', '0 1.8 -1.6');
+      if (ratio !== 1) return this.el.setAttribute('position', '0 1.8 -1.6');
+      return this.el.setAttribute('position', '0 1.6 -1.6');
     });
   },
 
@@ -256,17 +258,18 @@ AFRAME.registerComponent('spin-frames', {
   },
 
   setStereoLayer: function(event) {
-    const data = this.data;
+    const { stereo } = this.data;
     const obj3D = this.el.object3D.children[0];
+    if (obj3D) {
+      if (stereo === 'both' || stereo === 'left') {
+        obj3D.layers.set(0);
+      } else if (stereo === 'right') {
+        obj3D.layers.set(2);
+      }
 
-    if (data.stereo === 'both' || data.stereo === 'left') {
-      obj3D.layers.set(0);
-    } else if (data.stereo === 'right') {
-      obj3D.layers.set(2);
-    }
-
-    if (event === 'inVrMode' && data.stereo === 'both') {
-      obj3D.layers.set(1);
+      if (event === 'inVrMode' && stereo === 'both') {
+        obj3D.layers.set(1);
+      }
     }
   }
 });
