@@ -121,7 +121,7 @@ AFRAME.registerComponent('spin-frames', {
     loader.load(path, image => {
       const ratio = image.height / image.width;
       this.el.setAttribute('height', ratio);
-      console.log(this.el);
+
       // If old spec, move vehicle slightly higher on y-axis
       if (ratio !== 1) return this.el.setAttribute('position', '0 1.8 -1.6');
       return this.el.setAttribute('position', '0 1.6 -1.6');
