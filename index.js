@@ -21,10 +21,13 @@
 
   function detectOrientation(m) {
     var extCam = document.getElementById('camera-exterior');
+    var intCam = document.getElementById('camera-interior');
     if (m.matches) {
-      extCam.setAttribute('camera', 'fov', '110');
+      extCam.setAttribute('camera', 'fov', '85');
+      intCam.setAttribute('camera', 'fov', '85');
     } else {
-      extCam.setAttribute('camera', 'fov', '70');
+      extCam.setAttribute('camera', 'fov', '50');
+      intCam.setAttribute('camera', 'fov', '50');
     }
   }
 

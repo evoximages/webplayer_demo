@@ -249,7 +249,7 @@ AFRAME.registerComponent('spin-frames', {
   onEnterVr: function() {
     this.setStereoLayer('inVrMode');
     this.data.clickToSpin = true;
-    this.el.setAttribute('position', '0 3.4 2');
+    this.el.setAttribute('position', '0 3 2');
     this.el.sceneEl.setAttribute('rotation', '0 180 0');
   },
 
