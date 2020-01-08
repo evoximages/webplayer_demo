@@ -31,6 +31,7 @@ AFRAME.registerComponent('custom-cubemap', {
     this.el.setAttribute('visible', this.data.visible);
     if (this.data.folder !== '') {
       cubemap = this.loadCubemapTexture(this.data.folder);
+      cubemap.format = THREE.RGBAFormat;
       this.createSkyBox(cubemap);
     }
 
@@ -150,44 +151,5 @@ AFRAME.registerComponent('custom-cubemap', {
       'cubemap',
       new THREE.Mesh(skyBoxGeometry, skyBoxMaterial)
     );
-  },
-
-  formatFetchUrls: function(jsonData) {
-    let proxy = 'https://cors-anywhere.herokuapp.com/';
-
-    let filteredArray = jsonData.urls
-      .filter(url => RegExp(this.data.eye).test(url))
-      .sort();
-
-    // THREE.js loader array img order
-    let imgUrls = [
-      proxy + filteredArray[1], // right
-      proxy + filteredArray[3], // left
-      proxy + filteredArray[4], // top
-      proxy + filteredArray[5], // bottom
-      proxy + filteredArray[0], // front
-      proxy + filteredArray[2] // back
-    ];
-    return imgUrls;
-  },
-
-  async fetchData(key) {
-    let opt = {
-      eye: this.data.eye,
-      vifnum: this.data.vifnum,
-      apiKey: '?api_key=' + key,
-      product: '/products/14/134',
-      base:
-        'http://vehicles-api-dev.us-west-2.elasticbeanstalk.com/api/v1/vehicles/'
-    };
-
-    const fetchUrl =
-      opt.base + opt.vifnum + opt.product + opt.apiKey + '&eye=' + opt.eye;
-
-    return await fetch(fetchUrl)
-      .then(response => response.json())
-      .catch(function(error) {
-        console.log(error);
-      });
   }
 });
